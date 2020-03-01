@@ -1,0 +1,32 @@
+#######################################
+# Syntax Coloring Map For CustomStepper
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+CustomStepper	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+setRPM	KEYWORD2
+setSPR	KEYWORD2
+setDirection	KEYWORD2
+rotate	KEYWORD2
+rotateDegrees	KEYWORD2
+run	KEYWORD2
+isDone	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+CONTINUOUS	LITERAL1
+ROTATIONS	LITERAL1
+STEPS	LITERAL1
+STOP	LITERAL1
+CW	LITERAL1
+CCW	LITERAL1
