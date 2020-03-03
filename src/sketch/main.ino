@@ -1,13 +1,30 @@
+/*
+=== Circle Storage ===
+
+  Code writen by Miroslav Bass
+  The license is free.
+  For partial / full copying of the source code, indicate the original author.
+  Github - https://github.com/BassTechnologies
+  Github Repository - https://github.com/BassTechnologies/CircleStorage
+  Contact - bassmiroslav@gmail.com
+  Website - www.bassmiroslav.pro
+  Thanks for reading the annotation.
+  
+=== Circle Storage ===
+*/
+
 #include <Servo.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <CustomStepper.h>
+// Все необходимые "дополнительные" к стандартным библиотеки см. в репозитории проекта.
 #define sensbutton 2 // Сенсорная кнопка
 #define avalibleslots 4 // Количество слотов:
 /*
 Поддерживает пока только 4. Не больше/меньше. 
 */
 #define Reset() asm("JMP 0")  // Программная перезагрузка
+#define doorangle 90 // Макс.угл поворота для центрального окна.
 #define leftservo 100 // Угл поворота для левого сервопривода + максимальный градус поворота. см.далее
 /*  
 По хорошему нужно инвертировать на программном уровне, но мне лень. 
@@ -15,7 +32,7 @@
 */
 #define rightservo 0  // Угл поворота для правого сервопривода 
 /*
-Как устанавливать нужный градус.
+Как устанавливать нужный градус:
 В лежачем положении, если движущий элемент сервопривода ближе к правому краю - значит всё нормально
 т.е. инвертировать движение не нужно. Оставляем 0. 
 Если смотрит в левую сторону - инвертируем работу, а как я описал в предыдущем комментарии:
@@ -29,6 +46,7 @@ LiquidCrystal_I2C lcd(0x27,16,2);  // Устанавливаем дисплей
 
 Servo rservo; // Правый сервопривод
 Servo lservo; // Левый сервопривод
+Servo servodoor; // Подключаем центрального окно.
 
 boolean menu; // Находимся ли мы в меню выбора
 boolean selecting; // Выключаем возможность выбора слота, после того как мы выбрали уже этот слот.
@@ -40,13 +58,15 @@ int steppermode;  // Режим шагового двигателя
 int stepperstatus;  // После прокрута карусели на нужную нам позицию - активируем режим ожидания нажатия для возврата на исходную точку.
 int anglehigh = leftservo;  // Не трогать. Угл поворота для верхнего сервопривода 
 int anglelow = rightservo;  // Не трогать. Угл поворота для нижнего сервопривода
+int doorpos;  // Текущий угл поворота центрального окна.
 // Правый сервопривод - lowservo
 // Левый сервопривод - highservo
 
 unsigned long oldtimer; // Замена delay #1
 unsigned long secondoldtimer; // Замена delay #2
-long servotimerhigh; // Таймер для левого сервопривода
-long servotimerlow; // Таймер для правого сервопривода
+unsigned long servotimerhigh; // Таймер для левого сервопривода
+unsigned long servotimerlow; // Таймер для правого сервопривода
+unsigned long servotimerdoor; // Таймер для открытия центрального окна.
 
 volatile boolean sensflag;  // Interrupt
 
@@ -101,13 +121,16 @@ void setup() {
 
       rservo.attach(5); //  Правый сервопривод
       lservo.attach(6); // Левый сервопривод
-      
+      servodoor.attach(4); //  Центральное окно
+
+      // "Калибровка" сервомашинок
+      move_doorservo(false);  // Подняли центральное окно
+      move_doorservo(true);  // Опустили центральное окно
       move_lowservo(false);  // Опустили правый
       move_highservo(true);  // Опустили левый
 
   // Servo
 // //////////////////////////////////////////////////
-}
 
 void loop() {
   
@@ -122,6 +145,7 @@ void loop() {
       move_lowservo(false);  // Опустили правый  
     }
       if  (stepper.isDone() && digitalRead(2) == HIGH)  {
+        move_doorservo(true);  // Подняли центральное окно
         move_highservo(false);  // Опустили левый
         move_lowservo(true);  // Опустили правый  
         switch(selectedslot)  {
@@ -257,6 +281,9 @@ void autoaccept() {
   lcd.print(selectedslot);
   lcd.setCursor(3, 1);
   lcd.print("Processing");
+  if (stepper.isDone()) {
+    move_doorservo(false);  // Подняли центральное окно 
+  }
     switch(selectedslot)  {
       case 1:
         stepperstatus = 1;
@@ -356,6 +383,33 @@ void move_lowservo(int modes)  {
       }
     }
     anglelow = leftservo; 
+  }
+}
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// Центральное окно
+//////////////////////////////////////////////////
+void move_doorservo(int moded) {
+  if (moded == true) {
+    while (doorpos != 0)  { 
+      if (millis() - servotimerdoor >= 20) {
+        servotimerdoor = millis();
+        doorpos--;
+        servodoor.write(doorpos);
+      }
+    }
+    doorpos = 0;
+  }
+  else if (moded == false) {
+    while (doorpos != doorangle)  {
+      if (millis() - servotimerdoor >= 20) {
+        servotimerdoor = millis();
+        doorpos++;
+        servodoor.write(doorpos);
+      }
+    }
+    doorpos = doorangle;
   }
 }
 //////////////////////////////////////////////////
