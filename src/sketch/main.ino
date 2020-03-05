@@ -1,8 +1,7 @@
 /*
 === Circle Storage ===
 
-  Code writen by Miroslav Bass
-  The license is free.
+  The code is written by Miroslav Bass
   For partial / full copying of the source code, indicate the original author.
   Github - https://github.com/BassTechnologies
   Github Repository - https://github.com/BassTechnologies/CircleStorage
@@ -51,7 +50,7 @@ Servo servodoor; // Подключаем центрального окно.
 boolean menu; // Находимся ли мы в меню выбора
 boolean selecting; // Выключаем возможность выбора слота, после того как мы выбрали уже этот слот.
 
-int limit = 15;  // Число, после которого выбирается слот
+int limit = 7;  // Таймер отсчёта для выбора слота
 int selectedslot; // Выбран ли слот
 int time; // Таймер отсчёта. Выбор слота.
 int steppermode;  // Режим шагового двигателя
@@ -141,6 +140,7 @@ void loop() {
   // Возврат карусели на исходную точку
   ////////////////////////////////////
   if (stepperstatus)  {   // Прокрутили до нужного слота и теперь возвращаем на место.
+    lcd.noBacklight();
     if  (stepper.isDone())  {
       move_highservo(true);  // Опустили левый
       move_lowservo(false);  // Опустили правый  
@@ -182,14 +182,15 @@ void loop() {
       if (millis() - oldtimer >= 1000) {
         oldtimer = millis();
           if (time >= limit)  { // Лимит времени достигнут, слот выбран - исполняем.
-            menu = 0;
-            selecting = 0;
+            lcd.noBacklight();
+            menu = false;
+            selecting = false;
             move_highservo(false);  // Опустили левый
             move_lowservo(true);  // Опустили правый
             autoaccept();
           } else  { // Чтобы после исполнение условия выше, действие не пошло дальше и не натворило бед. Костыль.
               time++;
-              selecting = 1;
+              selecting = true;
                 if  (digitalRead(2) == HIGH)  { // Сбрасываем счётчик, если есть зажатие
                   time = 0;
                   lcd.setCursor(12, 1);
@@ -219,7 +220,7 @@ void loop() {
     if (millis() - secondoldtimer >= 1000) {
       secondoldtimer = millis();
         if (selectedslot >= avalibleslots)  { // Если текущий слот >= допустимого числа
-          selectedslot = 1;
+          selectedslot = 1; // Сбрасываем выбранный слот на 1, т.к. см. комментарий выше.
         } else  {
             selectedslot++;
           }
@@ -245,9 +246,9 @@ void loop() {
     lcd.print("Circle Storage");
     lcd.setCursor(5, 0);
     lcd.print("Hello!");
-    delay(1000); // Убрать
+    delay(1000); // 50/50. Можно убрать, а можно забить. По факту эта функция не задействуется в главном алгоритме, поэтому не стопарит ардуинку когда не нужно.
     interrupt();
-    sensflag = 0;
+    sensflag = false;
   }
   ////////////////////////////////////
   // Выводим из спячки
@@ -271,10 +272,11 @@ void interrupt()  {
   lcd.print(selectedslot);
   lcd.setCursor(12, 0);
   lcd.print("slot");
-  menu = 1; // После вывода из спячки, активируем меню с выбором слота и отсчётом.
+  menu = true; // После вывода из спячки, активируем меню с выбором слота и отсчётом.
 }
 
 void autoaccept() {
+  lcd.backlight();
   lcd.clear();
   lcd.setCursor(5, 0);
   lcd.print("Slot #");
@@ -329,7 +331,7 @@ void stepperfunc(int tangaz, int wwd)  {
   }
 
 void wakeup() { // Main interrupt
-  sensflag = 1; // Выводим из спячки
+  sensflag = true; // Выводим из спячки
   time = 0; // Сбрасываем счётчик времени в меню
   Serial.println("Hello!");
 } // Main interrupt
