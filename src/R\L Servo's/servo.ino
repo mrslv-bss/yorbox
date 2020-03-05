@@ -30,19 +30,18 @@ void setup() {
   rservo.attach(3); //  Правый сервопривод
   lservo.attach(10); // Левый сервопривод
 
-/*\
- * Использование
-move_lowservo(false);  // Опустили правый
-move_lowservo(true);  // Подняли правый
-move_lowservo(false);  // Опустили правый
+/*
+  move_lowservo(false);  // Опустили правый
+  move_lowservo(true);  // Подняли правый
+  move_lowservo(false);  // Опустили правый
 
-move_highservo(true);  // Опустили левый
-move_highservo(false);  // Подняли левый
-move_highservo(true);  // Опустили  левый
+  move_highservo(true);  // Опустили левый
+  move_highservo(false);  // Подняли левый
+  move_highservo(true);  // Опустили  левый
 */
 }
 
-void loop(){
+void loop() {
 }
 
 
