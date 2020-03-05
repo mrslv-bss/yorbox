@@ -43,7 +43,6 @@ move_highservo(true);  // Опустили  левый
 }
 
 void loop(){
-  //
 }
 
 
