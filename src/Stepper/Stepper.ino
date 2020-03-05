@@ -19,15 +19,13 @@ indexstepper(180, true);  // Идём по часовой
 }
 
 void indexstepper(int tangaz, int mode)  {
-  if (stepper.isDone() && steppermode == false && mode == true)
-  {
+  if (stepper.isDone() && steppermode == false && mode == true) {
     stepper.setDirection(CCW);
     stepper.rotateDegrees(tangaz);
     steppermode = true;
     Serial.println("По");
   }
-  else if (stepper.isDone() && steppermode == true && mode == false)
-  {
+  else if (stepper.isDone() && steppermode == true && mode == false)  {
     stepper.setDirection(CW);
     stepper.rotateDegrees(tangaz);
     steppermode = false;
