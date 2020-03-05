@@ -76,8 +76,8 @@ void move_highservo(int mode) {
 //////////////////////////////////////////////////
 // Левый сервопривод
 //////////////////////////////////////////////////
-void move_lowservo(int modes)  {  
-  if (modes == true) {
+void move_lowservo(int mode)  {  
+  if (mode == true) {
     while (anglelow != 0)  { 
       if (millis() - servotimerlow >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
         servotimerlow = millis();
@@ -87,7 +87,7 @@ void move_lowservo(int modes)  {
     }
     anglelow = 0;
   }
-  else if (modes == false) {
+  else if (mode == false) {
     while (anglelow != rotationservo)  { // Калибруем нужный градус поворота
       if (millis() - servotimerlow >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
         servotimerlow = millis();
