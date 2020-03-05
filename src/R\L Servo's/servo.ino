@@ -3,12 +3,12 @@
 Servo rservo; // Правый сервопривод
 Servo lservo; // Левый сервопривод
 
-#define leftservo 110 // Угл поворота для левого сервопривода + максимальный градус поворота. см.далее
+#define rotationservo 110 // Угл поворота для обеих сервоприводов. см.далее
 /*  
 По хорошему нужно инвертировать на программном уровне, но мне лень. 
-Просто для опускания используем 1 (а не 0) и 0 для поднятия. И устанавливаем здесь макс.градус.
+Просто для опускания правого используем 1 (а не 0 как для левого) и 0 для поднятия (а не 1 как для левого). 
 */
-#define rightservo 0  // Угл поворота для правого сервопривода 
+
 /*
 Как устанавливать нужный градус.
 В лежачем положении, если движущий элемент сервопривода ближе к правому краю - значит всё нормально
@@ -20,15 +20,15 @@ Servo lservo; // Левый сервопривод
 */
 
 // Левый сервопривод - highservo
-int anglehigh = leftservo;  // Не трогать. Угл поворота для верхнего сервопривода 
+int anglehigh;  // Не трогать. Угл поворота для верхнего сервопривода 
 long servotimerhigh; // Таймер для верхнего сервопривода
 // Правый сервопривод - lowservo
-int anglelow = rightservo;  // Не трогать. Угл поворота для нижнего сервопривода
+int anglelow; // Угл поворота для нижнего сервопривода
 long servotimerlow; // Таймер для нижнего сервопривода
 
 void setup() {
-rservo.attach(3); //  Правый сервопривод
-lservo.attach(10); // Левый сервопривод
+  rservo.attach(3); //  Правый сервопривод
+  lservo.attach(10); // Левый сервопривод
 
 /*\
  * Использование
@@ -43,7 +43,7 @@ move_highservo(true);  // Опустили  левый
 }
 
 void loop(){
-
+  //
 }
 
 
@@ -63,14 +63,14 @@ void move_highservo(int mode) {
     anglehigh = 0;
   }
   else if (mode == false) {
-    while (anglehigh != leftservo)  {     // см. комментарий 6 строки
+    while (anglehigh != rotationservo)  {     // см. комментарий 6 строки
       if (millis() - servotimerhigh >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
         servotimerhigh = millis();
         anglehigh++;
         rservo.write(anglehigh);
       }
     }
-    anglehigh = leftservo;  // см. комментарий 6 строки
+    anglehigh = rotationservo;  // см. комментарий 6 строки
   }
 }
 //////////////////////////////////////////////////
@@ -90,14 +90,14 @@ void move_lowservo(int modes)  {
     anglelow = 0;
   }
   else if (modes == false) {
-    while (anglelow != leftservo)  { // Калибруем нужный градус поворота
+    while (anglelow != rotationservo)  { // Калибруем нужный градус поворота
       if (millis() - servotimerlow >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
         servotimerlow = millis();
         anglelow++;
         lservo.write(anglelow);
       }
     }
-    anglelow = leftservo; 
+    anglelow = rotationservo; 
   }
 }
 //////////////////////////////////////////////////
