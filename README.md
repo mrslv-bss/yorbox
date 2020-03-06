@@ -1,4 +1,5 @@
-# Circle Storage || Arduino Project
+![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/Circle_Storage.png)
+# About Circle Storage
 
 >Circle Storage - portable box with circle mechanism.
 It looks like a box closed on all sides, on the cover of which a display is located. Below the center place for the put/place hole.
