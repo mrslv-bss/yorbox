@@ -25,15 +25,10 @@ Upload additional libraries from repository :
 <hr>
 
 Move uploaded libraries into
->> C:\Users\User\Documents\Arduino\libraries
 
-or
-
->> x64 - C:\Program Files (x86)\Arduino\libraries
-
->> x32 - C:\Program Files\Arduino\libraries
-
-<hr>
+| Documents       | x64                | x32 |
+| ------------- |:------------------:| :------------------: |
+| C:\Users\User\Documents\Arduino\libraries     | C:\Program Files (x86)\Arduino\libraries    | C:\Program Files\Arduino\libraries |
 
 Additional libraries - CustomStepper & LiquidCrystal_I2C. Other libraries are standard
 
