@@ -8,6 +8,19 @@ It looks like a box closed on all sides, on the cover of which a display is loca
 
 ![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green)
 
+# How this work #
+
+At first, a list of the components we need:
+* LCD Display 2x16
+* Sensor button
+* Three servo's
+* Stepper
+* Stepper driver
+
+<hr>
+
+Algorithm
+
 # INSTALLATION // PINS #
 
 If you have not changed the sketch pins, please, connect pins by instructions :
