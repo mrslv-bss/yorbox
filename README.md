@@ -6,6 +6,8 @@ It looks like a box closed on all sides, on the cover of which a display is loca
 
 >Auxiliary buttons are installed on the side.
 
+![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green)
+
 # INSTALLATION // PINS #
 
 If you have not changed the sketch pins, please, connect pins by instructions :
