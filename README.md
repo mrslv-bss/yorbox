@@ -14,7 +14,7 @@ Sensor button | Right servo | Left servo | Central servo | Stepper | LCD with i2
 --- | --- | --- | --- | --- | ---
 D2 | D5 | D6 | D4 | 8, 9, 10, 11 | (SDA) A4, (SCL) A5
 
-![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/ArduinoScheme.jpg)
+![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/Scheme.png)
 
 # Libraries #
 
