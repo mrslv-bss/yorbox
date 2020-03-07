@@ -53,8 +53,7 @@ Repository have three separately functions:
     // (false) raise by #define leftservo "degree of rotation"
     // This sketch have 2 servo's. Right and Left. Use as usual, !!! raise - lowering !!!
     [ move_lowservo - right / move_highservo - left ]
-    
-    
+  
 ***Contact us:***
 
 >Visit our website to see other projects.
@@ -64,6 +63,39 @@ Repository have three separately functions:
 >For commercial matters, write to the mail.
 >
 ><bassmiroslav@gmail.com>
+  
+# Production stages #
 
-![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-02-29_12-24-23.jpg)
-![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-02-29_12-30-04.jpg)
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-32.jpg)
+    
+    Montage breadboard with installed on them Arduino Nano
+    On the left and right side are installed servo
+    Same, connected LED display, Stepper & Sens button.
+>
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-34.jpg)
+
+    Stepper driver (keyestudio)
+>
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-35.jpg)
+>
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-37.jpg)
+
+    The bridge by which the window closes the entry. 
+    The servo without support from the post sags, which is why it is simply necessary.
+>
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-39.jpg)
+
+    2x16 LCD
+>
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-02-29_12-24-23.jpg)
+>
+>![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-02-29_12-30-04.jpg)
+
+    Carousel. Created from a metal constructor.
+>
+>The end result:
+![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/circle_photo.png)
+
+    Of course, maybe it doesn't look very good.
+    But if a design and do it in plastic - something cool will come out at minimum!
+>
