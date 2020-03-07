@@ -93,9 +93,9 @@ Repository have three separately functions:
 
     Carousel. Created from a metal constructor.
 >
->The end result:
+### The End Result ###
 ![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/circle_photo.png)
 
     Of course, maybe it doesn't look very good.
     But if a design and do it in plastic - something cool will come out at minimum!
->
+
