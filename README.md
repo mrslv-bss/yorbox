@@ -10,19 +10,14 @@ It looks like a box closed on all sides, on the cover of which a display is loca
 
 If you have not changed the sketch pins, please, connect pins by instructions :
 
-+ Sensor button - D2
-+ Right servo - D5
-+ Left servo - D6
-+ Central servo - D4
-+ Stepper - 8, 9, 10, 11
-+ LCD with i2c - (SDA)	A4, (SCL)	A5
+Sensor button | Right servo | Left servo | Central servo | Stepper | LCD with i2c
+--- | --- | --- | --- | --- | ---
+D2 | D5 | D6 | D4 | 8, 9, 10, 11 | (SDA) A4, (SCL) A5
 
 # Libraries #
 
 Upload additional libraries from repository :
 > https://github.com/BassTechnologies/CircleStorage/tree/master/libs
-
-<hr>
 
 Move uploaded libraries into
 
@@ -30,7 +25,7 @@ Move uploaded libraries into
 | ------------- |:------------------:| :------------------: |
 | C:\Users\User\Documents\Arduino\libraries     | C:\Program Files (x86)\Arduino\libraries    | C:\Program Files\Arduino\libraries |
 
-Additional libraries - CustomStepper & LiquidCrystal_I2C. Other libraries are standard
+`Additional libraries - CustomStepper & LiquidCrystal_I2C. Other libraries are standard`
 
 # Use sketch functions separately #
 
