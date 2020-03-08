@@ -34,10 +34,9 @@ D2 | D5 | D6 | D4 | 8, 9, 10, 11 | (SDA) A4, (SCL) A5
 
 # Libraries #
 
-Upload additional libraries from repository :
-> https://github.com/BassTechnologies/CircleStorage/tree/master/libs
+Upload additional [libraries](https://github.com/BassTechnologies/CircleStorage/tree/master/libs/ "Libraries") from repository.
 
-Move uploaded libraries into
+Move uploaded libraries into:
 
 | Documents       | x64                | x32 |
 | ------------- |:------------------:| :------------------: |
