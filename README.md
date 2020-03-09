@@ -32,6 +32,7 @@ At first, a list of the components we need:
 3. Servo (**x3**)
 4. Stepper (**x1**)
 5. Stepper driver (**x1**)
+6. Arduino Nano/Uno (**x1**)
 
 <hr>
 
