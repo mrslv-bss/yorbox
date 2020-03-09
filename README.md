@@ -12,8 +12,8 @@ The slot is selecting by pressing the touch button and displaying the current in
 >The design does not have its own box mounts, so for this a system of two servos in the “hooks” at the end was created.
 When the structure is not using, the servos keep the boxes in place, which makes transporting the structure easy.
 
->Compared to other boxes, circle storage looks futuristic, expensive and technologically advanced.
-Like every new product, circle storage also has its drawbacks. But let's say directly - which technologies are not accompanied by defects?
+>Compared to other boxes, Circle Storage looks futuristic, expensive and technologically advanced.
+Like every new product, Circle Storage also has its defects. But let's say directly - which technologies are not accompanied by defects in the early stages?
 
 >Simple organizers - this is the last century, it's time to change. Let it be my challenge to mediocrity!
 
