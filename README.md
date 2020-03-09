@@ -1,10 +1,21 @@
 ![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/Circle_Storage.png)
-# About Circle Storage
+# Circle Storage - What is it?
 
->Circle Storage - portable box with circle mechanism.
-It looks like a box closed on all sides, on the cover of which a display is located. Below the center place for the put/place hole.
+>Circle Storage - The smart box with circle delivery system will surely amaze your friends and relatives.
 
->Auxiliary buttons are installed on the side.
+>4 boxes of 7x5x1.5cm will allow you to store small details in a completely new way.
+The carousel, which is located in the center of the structure, delivers your chosen slot with a box into a special, mechanical window.
+The slot is selecting by pressing the touch button and displaying the current information on the LCD display.
+
+>Very impressive.
+
+>The design does not have its own box mounts, so for this a system of two servos in the “hooks” at the end was created.
+When the structure is not using, the servos keep the boxes in place, which makes transporting the structure easy.
+
+>Compared to other boxes, circle storage looks futuristic, expensive and technologically advanced.
+Like every new product, circle storage also has its drawbacks. But let's say directly - which technologies are not accompanied by defects?
+
+>Simple organizers - this is the last century, it's time to change. Let it be my challenge to mediocrity!
 
 ![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green)
 
@@ -26,7 +37,7 @@ The center window will close, the carousel will return to its starting position 
 
 <hr>
 
-At first, a list of the components we need:
+A list of the main components we need:
 1. LCD Display 2x16 (**x4 F-M adapter** (**x8** for wire extension))
 2. Sensor button (**x3 F-M adapter** (**x6** for wire extension))
 3. Servo (**x3**)
