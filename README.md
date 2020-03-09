@@ -8,8 +8,21 @@ It looks like a box closed on all sides, on the cover of which a display is loca
 
 ![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green)
 
-# How this work #
-Algorithm
+# How It Work #
+
+Exit from hibernation is performed by a **single click** on the touch button.
+
+Further, the display will show the text of the currently selected slot and the accompanying timer.
+
+__1/4 slots__ can be selected with a single click on the touch button. Resetting the timer - holding the touch button.
+
+After the timer expires, the two servos will go down, the central window will open and the carousel will be activated.
+
+**The carousel scroll to the slot of your choice.**
+
+To end the session with circle storage, perform a single press on the touch button.
+
+The center window will close, the carousel will return to its starting position and the servos will lock the side boxes.
 
 <hr>
 
@@ -22,7 +35,11 @@ At first, a list of the components we need:
 
 <hr>
 
-# INSTALLATION // PINS #
+###### YouTube ######
+
+[<img src="https://img.youtube.com/vi/qYs0jXvUxDg/maxresdefault.jpg" width="150%">](https://youtu.be/qYs0jXvUxDg)
+
+# INSTALLATION // Getting Started #
 
 If you have not changed the sketch pins, please, connect pins by instructions :
 
