@@ -61,6 +61,12 @@ Move uploaded libraries into:
 
 `Additional libraries - CustomStepper & LiquidCrystal_I2C. Other libraries are standard`
 
+# Sketch #
+
+1. Download `src/sketch/main.ino`
+2. Make the pins according to the scheme.
+3. Load `main.ino` into your arduino
+
 # Use sketch functions separately #
 
 Repository have three separately functions:
@@ -87,14 +93,14 @@ Repository have three separately functions:
     // (false) raise by #define leftservo "degree of rotation"
     // This sketch have 2 servo's. Right and Left. Use as usual, !!! raise - lowering !!!
     [ move_lowservo - right / move_highservo - left ]
-  
+
 ***Contact us:***
 
 >Visit our website to see other projects.
 >
 >www.bassmiroslav.pro
 >
->For commercial matters, write to the mail.
+>For commercial matters/Propose for Improvement code/scheme, write to the mail.
 >
 ><bassmiroslav@gmail.com>
   
