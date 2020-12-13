@@ -51,6 +51,12 @@ A list of the main components we need:
 
 [<img src="https://img.youtube.com/vi/qYs0jXvUxDg/maxresdefault.jpg" width="150%">](https://youtu.be/qYs0jXvUxDg)
 
+###### Remaster Edition (not released) ######
+<img src="https://raw.githubusercontent.com/BassTechnologies/CircleStorage/master/img/118761516_111360574025919_1834713845074961977_o.jpg" width="150%">
+
+###### Watch a video (download) ######
+[<img src="https://raw.githubusercontent.com/BassTechnologies/CircleStorage/master/img/Screenshot_12.png" width="150%">](https://github.com/BassTechnologies/CircleStorage/blob/master/img/128597729_3788562921188669_8593680395783432028_n.mp4?raw=true)
+
 # INSTALLATION // Getting Started #
 
 If you have not changed the sketch pins, please, connect pins by instructions :
