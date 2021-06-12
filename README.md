@@ -47,10 +47,6 @@ A list of the main components we need:
 
 <hr>
 
-###### YouTube ######
-
-[<img src="https://img.youtube.com/vi/qYs0jXvUxDg/maxresdefault.jpg" width="150%">](https://youtu.be/qYs0jXvUxDg)
-
 ###### Remaster Edition (not released) ######
 <img src="https://raw.githubusercontent.com/BassTechnologies/CircleStorage/master/img/118761516_111360574025919_1834713845074961977_o.jpg" width="150%">
 
@@ -121,39 +117,3 @@ Repository have three separately functions:
 >For commercial matters/Propose for Improvement code/scheme, write to the mail.
 >
 ><bassmiroslav@gmail.com>
-  
-# Production stages #
-
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-32.jpg)
-    
-    Montage breadboard with installed on them Arduino Nano
-    On the left and right side are installed servo
-    Same, connected LED display, Stepper & Sens button.
->
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-34.jpg)
-
-    Stepper driver (keyestudio)
->
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-35.jpg)
->
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-37.jpg)
-
-    The bridge by which the window closes the entry. 
-    The servo without support from the post sags, which is why it is simply necessary.
->
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-03-07_16-28-39.jpg)
-
-    2x16 LCD
->
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-02-29_12-24-23.jpg)
->
->![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/photo_2020-02-29_12-30-04.jpg)
-
-    Carousel. Created from a metal constructor.
->
-### The End Result ###
-![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/circle_photo.png)
-
-    Of course, maybe it doesn't look very good.
-    But if a design and do it in plastic - something cool will come out at minimum!
-
