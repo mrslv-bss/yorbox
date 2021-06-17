@@ -83,37 +83,27 @@ Move uploaded libraries into:
 
 # Use sketch functions separately #
 
-Repository have three separately functions:
-* Central servo (Front automatic window)
-* R\L Servo's (Right/Left servo's for save boxs at fall)
+Repository has three functions:
+* Central servo (Front Automatic Window)
+* R\L Servo's (Right/Left Fixate Servos)
 * Stepper (Circle)
 
-###### Central servo ######
+###### Central Servo ######
     move_doorservo(int mode) - mode (true/false)
     
-    // (true) If servo in pos 90 (#define doorangle "degree of rotation") - servo returns to zero pos
-    // (false) If servo in pos 0 (#define doorangle "degree of rotation") - servo returns to 90 pos
+    // (true) If the servo is in pos 90 (#define doorangle "degree of rotation") - servo returns to zero pos
+    // (false) If the servo is in pos 0 (#define doorangle "degree of rotation") - servo returns to 90 pos
 ###### Stepper ######
     indexstepper(int tangaz, int mode) - tangaz (0-180 (position in degrees) ), mode (true/false (switch between servos) )
     
-    // The feature is that, if we raise servo - we can lowered them. But if we loose raise - lowered be impossible.
-    // If you need swap this process, swap: mode == true & mode == false with steppermode = true; &  steppermode = false;
-###### R\L Servo's ######
+    // If we raise the servo - we can lower them, but not vice versa!
+    // For swap this process, swap: mode == true & mode == false with steppermode = true; &  steppermode = false;
+###### R\L Servos ######
     move_highservo(int mode) - mode (true/false)
     move_lowservo(int mode) - mode (true/false)
     
-    // ! The feature is that, if we raise servo - we can lowered them. But if we loose raise - lowered be impossible.
-    // (true) lowering
+    // If we raise the servo - we can lower them, but not vice versa!
+    // (true) lower
     // (false) raise by #define leftservo "degree of rotation"
-    // This sketch have 2 servo's. Right and Left. Use as usual, !!! raise - lowering !!!
+    // This sketch contains 2 servos. Right and Left. Use as usual, raise - lowering.
     [ move_lowservo - right / move_highservo - left ]
-
-***Contact us:***
-
->Visit our website to see other projects.
->
->www.bassmiroslav.pro
->
->For commercial matters/Propose for Improvement code/scheme, write to the mail.
->
-><bassmiroslav@gmail.com>
