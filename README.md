@@ -1,7 +1,7 @@
 ![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/Circle_Storage.png)
-# Circle Storage - What is it?
+# Conveyor Box
 
->Circle Storage - The smart box with circle delivery system will surely amaze your friends and relatives.
+>Conveyor Box - The items delivery system based arduino. 3D printed parts, wooden carcass and acrylic windows.
 
 >4 boxes of 7x5x1.5cm will allow you to store small details in a completely new way.
 The carousel, which is located in the center of the structure, delivers your chosen slot with a box into a special, mechanical window.
@@ -17,7 +17,7 @@ Like every new product, Circle Storage also has its defects. But let's say direc
 
 >Simple organizers - this is the last century, it's time to change. Let it be my challenge to mediocrity!
 
-![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green)
+![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green) ![Image alt](https://img.shields.io/github/last-commit/mrslv-bss/yorbox)
 
 # How It Work #
 
@@ -47,7 +47,7 @@ A list of the main components we need:
 
 <hr>
 
-###### Remaster Edition (not released) ######
+###### Remaster Edition ######
 <img src="https://raw.githubusercontent.com/BassTechnologies/CircleStorage/master/img/118761516_111360574025919_1834713845074961977_o.jpg" width="150%">
 
 ###### Watch a video (download) ######
@@ -55,7 +55,7 @@ A list of the main components we need:
 
 # INSTALLATION // Getting Started #
 
-If you have not changed the sketch pins, please, connect pins by instructions :
+If you haven't changed the sketch pins, connect pins by instructions :
 
 Sensor button | Right servo | Left servo | Central servo | Stepper | LCD with i2c
 --- | --- | --- | --- | --- | ---
@@ -65,7 +65,7 @@ D2 | D5 | D6 | D4 | 8, 9, 10, 11 | (SDA) A4, (SCL) A5
 
 # Libraries #
 
-Upload additional [libraries](https://github.com/BassTechnologies/CircleStorage/tree/master/libs/ "Libraries") from repository.
+Upload additional [libraries](https://github.com/mrslv-bss/yorbox/tree/master/libs/ "Libraries") from repository.
 
 Move uploaded libraries into:
 
