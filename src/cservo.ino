@@ -1,27 +1,26 @@
-#include <Servo.h> // Используем библиотеку для работы с сервоприводом
-#define doorangle 90 // Макс.угл поворота для центрального окна.
+#include <Servo.h>
+#define doorangle 90
 
-Servo servodoor; // Подключаем центрального окно.
+Servo servodoor; 
 
-int doorpos;  // Текущий угл поворота центрального окна.
-long servotimerdoor; // Таймер для открытия центрального окна.
+int doorpos;  // Current degree of rotation of central window
+long servotimerdoor; // Central window opening timer
 
 
 void setup() 
 { 
-  servodoor.attach(8); //  Центральное окно
+  servodoor.attach(8); 
 
-// * Как использовать
-//  move_doorservo(false);  // Подняли
+// * How to use
+//  move_doorservo(false);  // Up
 //
-//  move_doorservo(true);  // Опустили
-// * Как использовать
+//  move_doorservo(true);  // Down
 } 
 
 void loop() {}
 
 //////////////////////////////////////////////////
-// Центральное окно
+// Central Window
 //////////////////////////////////////////////////
 void move_doorservo(int mode) {
   if (mode == true) {
@@ -45,4 +44,3 @@ void move_doorservo(int mode) {
     doorpos = doorangle;
   }
 }
-//////////////////////////////////////////////////

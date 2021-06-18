@@ -20,56 +20,41 @@
 #include <LiquidCrystal_I2C.h>
 #include <CustomStepper.h>
 
-// Все необходимые "дополнительные" к стандартным библиотеки см. в репозитории проекта.
-#define sensbutton 2 // Сенсорная кнопка
-#define avalibleslots 4 // Количество слотов:
-/*
-Поддерживает пока только 4. Не больше/меньше. 
-*/
-#define Reset() asm("JMP 0")  // Программная перезагрузка
-#define doorangle 90 // Макс.угл поворота для центрального окна.
-#define leftservo 100 // Угл поворота для левого сервопривода + максимальный градус поворота. см.далее
-/*  
-По хорошему нужно инвертировать на программном уровне, но мне лень. 
-Просто для опускания используем 1 (а не 0) и 0 для поднятия. И устанавливаем здесь макс.градус.
-*/
-#define rightservo 0  // Угл поворота для правого сервопривода 
-/*
-Как устанавливать нужный градус:
-В лежачем положении, если движущий элемент сервопривода ближе к правому краю - значит всё нормально
-т.е. инвертировать движение не нужно. Оставляем 0. 
-Если смотрит в левую сторону - инвертируем работу, а как я описал в предыдущем комментарии:
-Опускание это 1
-Поднятие это 0
-Градус ставим 110.
-*/
+#define sensbutton 2
+#define avalibleslots 4 // Slot count (max 4):
 
-CustomStepper stepper(8, 9, 10, 11);  // Подключаем шаговый двигатель
-LiquidCrystal_I2C lcd(0x27,16,2);  // Устанавливаем дисплей
+#define Reset() asm("JMP 0")  // Reboot program
+#define doorangle 90 // Max degree of rotation central window.
+#define leftservo 100 // Degree of rotation left servo
 
-Servo rservo; // Правый сервопривод
-Servo lservo; // Левый сервопривод
-Servo servodoor; // Подключаем центрального окно.
+#define rightservo 0  // Degree of rotation right servo 
 
-boolean menu; // Находимся ли мы в меню выбора
-boolean selecting; // Выключаем возможность выбора слота, после того как мы выбрали уже этот слот.
+CustomStepper stepper(8, 9, 10, 11);
+LiquidCrystal_I2C lcd(0x27,16,2);
 
-int limit = 7;  // Таймер отсчёта для выбора слота
-int selectedslot; // Выбран ли слот
-int time; // Таймер отсчёта. Выбор слота.
-int steppermode;  // Режим шагового двигателя
-int stepperstatus;  // После прокрута карусели на нужную нам позицию - активируем режим ожидания нажатия для возврата на исходную точку.
+Servo rservo;
+Servo lservo;
+Servo servodoor;
+
+boolean menu; // Are we in the selection menu
+boolean selecting; // Turn off the ability to select a slot after we have already selected this slot.
+
+int limit = 7;  // Changeable time of slot choose
+int selectedslot; // Slot selected?
+int time; // Time counter. Slot selecter.
+int steppermode; // Stepper mode
+int stepperstatus;  // Waiting btn press mode, for return to initial position, when carusel gave out a box.
 int anglehigh = leftservo;  // Dont touch. Angle of rotation for high servo 
 int anglelow = rightservo;  // Dont touch. Angle of rotation for low servo 
 int doorpos;  // Current angle of rotation central window.
 // Right servo - lowservo
 // Left servo - highservo
 
-unsigned long oldtimer; // Замена delay #1
-unsigned long secondoldtimer; // Замена delay #2
-unsigned long servotimerhigh; // Таймер для левого сервопривода
-unsigned long servotimerlow; // Таймер для правого сервопривода
-unsigned long servotimerdoor; // Таймер для открытия центрального окна.
+unsigned long oldtimer; // Instead delay # 1
+unsigned long secondoldtimer; // Instead delay # 2
+unsigned long servotimerhigh; // Left servo timer
+unsigned long servotimerlow; // Right servo timer
+unsigned long servotimerdoor; // Open central window timer
 
 volatile boolean sensflag;  // Interrupt
 

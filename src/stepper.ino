@@ -1,8 +1,8 @@
-#include <CustomStepper.h>  // Используем библиотеку
-CustomStepper stepper(8, 9, 10, 11);  // Подключаем
+#include <CustomStepper.h>
+CustomStepper stepper(8, 9, 10, 11);
 
-int steppermode;  // Режим шагового двигателя
-long steppertimer;  // Замена delay
+int steppermode;  // Stepper mode
+long steppertimer;  // Instead delay (more performance)
 
 void setup()  {
   Serial.begin(9600);
@@ -11,10 +11,10 @@ void setup()  {
 }
 
 void loop() {
-indexstepper(180, true);  // Идём по часовой
-  if (millis() - steppertimer >= 5000) {  // Ждём 5 секунд
+indexstepper(180, true);  // Clockwise
+  if (millis() - steppertimer >= 5000) {  // Wait 5s
     steppertimer = millis();
-    indexstepper(180, false);  // Идём против часовой
+    indexstepper(180, false);  // СounterClockwise
   }
 }
 
