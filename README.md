@@ -37,10 +37,10 @@ The center window will close, the carousel will return to its starting position 
 
 <hr>
 
-A list of the main components we need:
+A list of components:
 1. LCD Display 2x16 (**x4 F-M adapter** (**x8** for wire extension))
-2. Sensor button (**x3 F-M adapter** (**x6** for wire extension))
-3. Servo (**x3**)
+2. Sensor buttons (**x3 F-M adapter** (**x6** for wire extension))
+3. Servos (**x3**)
 4. Stepper (**x1**)
 5. Stepper driver (**x1**)
 6. Arduino Nano/Uno (**x1**)
@@ -77,15 +77,15 @@ Move uploaded libraries into:
 
 # Sketch #
 
-1. Download `src/sketch/main.ino`
+1. Download `src/main.ino`
 2. Make the pins according to the scheme.
-3. Load `main.ino` into your arduino
+3. Upload `main.ino` into your arduino
 
 # Use sketch functions separately #
 
 Repository has three functions:
 * Central servo (Front Automatic Window)
-* R\L Servo's (Right/Left Fixate Servos)
+* R\L Servos (Right/Left Fixate Servos)
 * Stepper (Circle)
 
 ###### Central Servo ######
