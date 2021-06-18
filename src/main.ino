@@ -1,21 +1,25 @@
 /*
-=== Circle Storage ===
 
-  The code is written by Miroslav Bass
-  For partial / full copying of the source code, indicate the original author.
-  Github - https://github.com/BassTechnologies
-  Github Repository - https://github.com/BassTechnologies/CircleStorage
-  Contact - bassmiroslav@gmail.com
-  Website - www.bassmiroslav.pro
-  Thanks for reading the annotation.
+  === CREDITS ===
+
+  Miroslav Bass
+  bassmiroslav@gmail.com
+  Github Repository - https://github.com/mrslv-bss/yorbox
   
-=== Circle Storage ===
+  === CREDITS ===
+
+  Last stable version: [1.0] 3.5.2021
+    ~ Release
+  Current version: [1.1]
+    ~ [1.1.1] Dev comment's localization
+
 */
 
 #include <Servo.h>
 #include <Wire.h> 
 #include <LiquidCrystal_I2C.h>
 #include <CustomStepper.h>
+
 // Все необходимые "дополнительные" к стандартным библиотеки см. в репозитории проекта.
 #define sensbutton 2 // Сенсорная кнопка
 #define avalibleslots 4 // Количество слотов:
@@ -55,11 +59,11 @@ int selectedslot; // Выбран ли слот
 int time; // Таймер отсчёта. Выбор слота.
 int steppermode;  // Режим шагового двигателя
 int stepperstatus;  // После прокрута карусели на нужную нам позицию - активируем режим ожидания нажатия для возврата на исходную точку.
-int anglehigh = leftservo;  // Не трогать. Угл поворота для верхнего сервопривода 
-int anglelow = rightservo;  // Не трогать. Угл поворота для нижнего сервопривода
-int doorpos;  // Текущий угл поворота центрального окна.
-// Правый сервопривод - lowservo
-// Левый сервопривод - highservo
+int anglehigh = leftservo;  // Dont touch. Angle of rotation for high servo 
+int anglelow = rightservo;  // Dont touch. Angle of rotation for low servo 
+int doorpos;  // Current angle of rotation central window.
+// Right servo - lowservo
+// Left servo - highservo
 
 unsigned long oldtimer; // Замена delay #1
 unsigned long secondoldtimer; // Замена delay #2
@@ -72,26 +76,24 @@ volatile boolean sensflag;  // Interrupt
 
 void setup() {
   Serial.begin(9600);
-// //////////////////////////////////////////////////
+
   // Stepper Motor
   stepper.setRPM(12);
   stepper.setSPR(4075.7728395);
-  // Stepper Motor
-// //////////////////////////////////////////////////
+
   // SensButton
   pinMode(sensbutton, INPUT_PULLUP);
   attachInterrupt(0, wakeup, RISING);
-  // SensButton
-// //////////////////////////////////////////////////
+
   // LED Display
   lcd.init();                     
   lcd.backlight();
 
   // Logo
   lcd.setCursor(1, 0);
-  lcd.print("Circle Storage");
+  lcd.print("Conveyor Box");
   lcd.setCursor(1, 1);
-  lcd.print("@bass_devware");
+  lcd.print("@mrslv-bss");
   delay(500);
   lcd.setCursor(0, 0);
   lcd.print("_");
@@ -112,21 +114,20 @@ void setup() {
   lcd.clear();
   delay(500);
   lcd.noBacklight();
-  // Logo
 
   // LED Display
 // //////////////////////////////////////////////////
   // Servo
 
-      rservo.attach(5); //  Правый сервопривод
-      lservo.attach(6); // Левый сервопривод
-      servodoor.attach(4); //  Центральное окно
+      rservo.attach(5); //  Right servo
+      lservo.attach(6); // Left servo
+      servodoor.attach(4); //  Central window
 
-      // "Калибровка" сервомашинок
-      move_doorservo(false);  // Подняли центральное окно
-      move_doorservo(true);  // Опустили центральное окно
-      move_lowservo(false);  // Опустили правый
-      move_highservo(true);  // Опустили левый
+      // Servos calibration
+      move_doorservo(false);  // Up central windoow
+      move_doorservo(true);  // Down central window
+      move_lowservo(false);  // Down right
+      move_highservo(true);  // Down left
 
   // Servo
 // //////////////////////////////////////////////////
@@ -134,21 +135,21 @@ void setup() {
 
 void loop() {
   
-  stepper.run(); // Необходимо для шагового двигателя.
+  stepper.run(); // Necessary for stepper
   
   ////////////////////////////////////
-  // Возврат карусели на исходную точку
+  // Return carusel to initial position
   ////////////////////////////////////
-  if (stepperstatus)  {   // Прокрутили до нужного слота и теперь возвращаем на место.
+  if (stepperstatus)  {   // Scrolled to necessary slot and now get back.
     lcd.noBacklight();
     if  (stepper.isDone())  {
-      move_highservo(true);  // Опустили левый
-      move_lowservo(false);  // Опустили правый  
+      move_highservo(true);  // Down left
+      move_lowservo(false);  // Down right  
     }
       if  (stepper.isDone() && digitalRead(2) == HIGH)  {
-        move_doorservo(true);  // Подняли центральное окно
-        move_highservo(false);  // Опустили левый
-        move_lowservo(true);  // Опустили правый  
+        move_doorservo(true);  // Up central window
+        move_highservo(false);  // Down Left
+        move_lowservo(true);  // Down right  
         switch(selectedslot)  {
           case 1:
             stepperfunc(0, 0);
@@ -166,37 +167,34 @@ void loop() {
         stepperstatus = 2;
       }
         if (stepper.isDone() && stepperstatus == 2) {
-          attachInterrupt(0, wakeup, RISING); // Без этой строки, после перезагрузки скрипт сразу войдёт в меню выбора слота.
-          Reset();  // Перезагрузка после возвращение карусели на начальную позицию. Предотвращает возможные программные зависания и легче производить отладку.
+          attachInterrupt(0, wakeup, RISING); // Without this line, after rebooting, the script will immediately enter the slot selection menu.
+          Reset();  // Reload after return carusel on initial position. Prevents possible software freezes and is easier to debug.
         }
     }
-  ////////////////////////////////////
-  // Возврат карусели на исходную точку
-  ////////////////////////////////////
 
   ////////////////////////////////////
-  // Стартовое меню отсчёта времени
+  // Start menu counter
   ////////////////////////////////////
   if (menu) {
     detachInterrupt(0);
       if (millis() - oldtimer >= 1000) {
         oldtimer = millis();
-          if (time >= limit)  { // Лимит времени достигнут, слот выбран - исполняем.
+          if (time >= limit)  { // Time limit reached, slot choosed - execute.
             lcd.noBacklight();
             menu = false;
             selecting = false;
-            move_highservo(false);  // Опустили левый
-            move_lowservo(true);  // Опустили правый
+            move_highservo(false);  // Down left
+            move_lowservo(true);  // Down right
             autoaccept();
-          } else  { // Чтобы после исполнение условия выше, действие не пошло дальше и не натворило бед. Костыль.
+          } else  { // 
               time++;
               selecting = true;
-                if  (digitalRead(2) == HIGH)  { // Сбрасываем счётчик, если есть зажатие
+                if  (digitalRead(2) == HIGH)  { // Reset time counter, if button press catched
                   time = 0;
                   lcd.setCursor(12, 1);
                   lcd.print(" ");
                 }
-                if (limit >= 10)  { // Работа с числами формата X/XX.
+                if (limit >= 10)  { // Work with numbers format X/XX.
                   lcd.setCursor(11, 1);
                 } else  {
                     lcd.setCursor(12, 1);
@@ -209,18 +207,15 @@ void loop() {
           }
       }
   }
-  ////////////////////////////////////
-  // Стартовое меню отсчёта времени
-  ////////////////////////////////////
 
   ////////////////////////////////////
-  // Меню выбора слота
+  // Select slot menu
   ////////////////////////////////////
-  if  (digitalRead(2) == HIGH && selecting)  {  // Есть нажатие из меню с отсчётом времени завершения ожидания.
+  if  (digitalRead(2) == HIGH && selecting)  {  // Press on menu with time counter.
     if (millis() - secondoldtimer >= 1000) {
       secondoldtimer = millis();
-        if (selectedslot >= avalibleslots)  { // Если текущий слот >= допустимого числа
-          selectedslot = 1; // Сбрасываем выбранный слот на 1, т.к. см. комментарий выше.
+        if (selectedslot >= avalibleslots)  { // If current slot >= allowable number
+          selectedslot = 1; // Lower choosed slot on 1, as see comment above.
         } else  {
             selectedslot++;
           }
@@ -232,12 +227,9 @@ void loop() {
     lcd.print("slot");
     }
   }
-  ////////////////////////////////////
-  // Меню выбора слота
-  ////////////////////////////////////
 
   ////////////////////////////////////
-  // Выводим из спячки
+  // Get out of sleep
   ////////////////////////////////////
   if (sensflag) {
     lcd.clear();
@@ -246,19 +238,16 @@ void loop() {
     lcd.print("Circle Storage");
     lcd.setCursor(5, 0);
     lcd.print("Hello!");
-    delay(1000); // 50/50. Можно убрать, а можно забить. По факту эта функция не задействуется в главном алгоритме, поэтому не стопарит ардуинку когда не нужно.
+    delay(1000); // 50/50. You can remove it, or not. On your opinion.
     interrupt();
     sensflag = false;
   }
-  ////////////////////////////////////
-  // Выводим из спячки
-  ////////////////////////////////////
 }
 
 
 void interrupt()  {
   lcd.clear();
-    if (limit >= 10)  { // Работа с числами формата X/XX.
+    if (limit >= 10)  { // Work with numbers format X/XX.
       lcd.setCursor(0, 1);
       lcd.print("AutoAccept:");
     } else  {
@@ -272,7 +261,7 @@ void interrupt()  {
   lcd.print(selectedslot);
   lcd.setCursor(12, 0);
   lcd.print("slot");
-  menu = true; // После вывода из спячки, активируем меню с выбором слота и отсчётом.
+  menu = true; // After get out of sleep, activate select slot menu with counter.
 }
 
 void autoaccept() {
@@ -285,13 +274,13 @@ void autoaccept() {
   lcd.setCursor(3, 1);
   lcd.print("Processing");
   if (stepper.isDone()) {
-    move_doorservo(false);  // Подняли центральное окно 
+    move_doorservo(false);  // Up central window. 
   }
     switch(selectedslot)  {
       case 1:
         stepperstatus = 1;
           if (stepper.isDone()) {
-            stepperfunc(0, 1);  // По часовой стрелке. Текущий слот.
+            stepperfunc(0, 1);  // Clockwise. Current slot.
           }
       break;
       case 2:
@@ -303,13 +292,13 @@ void autoaccept() {
       case 3:
         stepperstatus = 1;
           if (stepper.isDone()) {
-            stepperfunc(180, 1);  // По часовой стрелке. Слот через один. 
+            stepperfunc(180, 1);  // Clockwise. Slot in one. 
           }
       break;
       case 4:
         stepperstatus = 1;
           if (stepper.isDone()) {
-            stepperfunc(270, 1);  // По часовой стрелке. Последний. 
+            stepperfunc(270, 1);  // Clockwise. Last. 
           }
       break;
     }
@@ -331,18 +320,18 @@ void stepperfunc(int tangaz, int wwd)  {
   }
 
 void wakeup() { // Main interrupt
-  sensflag = true; // Выводим из спячки
-  time = 0; // Сбрасываем счётчик времени в меню
+  sensflag = true; // Get out of sleep
+  time = 0; // Reset counter time menu
   Serial.println("Hello!");
 } // Main interrupt
 
 //////////////////////////////////////////////////
-// Правый сервопривод
+// Right Servo
 //////////////////////////////////////////////////
 void move_highservo(int mode) {
   if (mode == true) {
     while (anglehigh != 0)  { 
-      if (millis() - servotimerhigh >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
+      if (millis() - servotimerhigh >= 15) {   // 15ms - delay servo smooth. The more - the smoother the movement.
         servotimerhigh = millis();
         anglehigh--;
         rservo.write(anglehigh);
@@ -351,25 +340,24 @@ void move_highservo(int mode) {
     anglehigh = 0;
   }
   else if (mode == false) {
-    while (anglehigh != leftservo)  {     // см. комментарий 6 строки
-      if (millis() - servotimerhigh >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
+    while (anglehigh != leftservo)  {     // Dont touch. Angle of rotation for high servo
+      if (millis() - servotimerhigh >= 15) {   // 15ms - delay servo smooth. The more - the smoother the movement.
         servotimerhigh = millis();
         anglehigh++;
         rservo.write(anglehigh);
       }
     }
-    anglehigh = leftservo;  // см. комментарий 6 строки
+    anglehigh = leftservo;  // Dont touch. Angle of rotation for high servo
   }
 }
-//////////////////////////////////////////////////
 
 //////////////////////////////////////////////////
-// Левый сервопривод
+// Left Servo
 //////////////////////////////////////////////////
 void move_lowservo(int modes)  {  
   if (modes == true) {
     while (anglelow != 0)  { 
-      if (millis() - servotimerlow >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
+      if (millis() - servotimerlow >= 15) {   // 15ms - delay servo smooth. The more - the smoother the movement.
         servotimerlow = millis();
         anglelow--;
         lservo.write(anglelow);
@@ -378,8 +366,8 @@ void move_lowservo(int modes)  {
     anglelow = 0;
   }
   else if (modes == false) {
-    while (anglelow != leftservo)  { // Калибруем нужный градус поворота
-      if (millis() - servotimerlow >= 15) {   // 15мс - задержка движущего элемента сервопривода. Чем больше - тем плавнее движение.
+    while (anglelow != leftservo)  { // Calibration degree of rotation
+      if (millis() - servotimerlow >= 15) {   // 15ms - delay servo smooth. The more - the smoother the movement.
         servotimerlow = millis();
         anglelow++;
         lservo.write(anglelow);
@@ -388,10 +376,9 @@ void move_lowservo(int modes)  {
     anglelow = leftservo; 
   }
 }
-//////////////////////////////////////////////////
 
 //////////////////////////////////////////////////
-// Центральное окно
+// Central Window
 //////////////////////////////////////////////////
 void move_doorservo(int moded) {
   if (moded == true) {
@@ -415,4 +402,3 @@ void move_doorservo(int moded) {
     doorpos = doorangle;
   }
 }
-//////////////////////////////////////////////////
