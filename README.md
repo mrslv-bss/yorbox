@@ -1,27 +1,29 @@
 ![Image alt](https://github.com/mrslv-bss/yorbox/raw/master/img/conveyorbox.png)
 # Conveyor Box
 
+![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green) ![Image alt](https://img.shields.io/github/last-commit/mrslv-bss/yorbox)
+
 >Conveyor Box - The items delivery system based arduino. 3D printed parts, wooden carcass and acrylic windows.
 
 There are 5 boxes on board. The conveyor mechanism will deliver the required box to the central mechanics window for you to pick it up.
 
 Compared to other storage methods, the Conveyor looks futuristic, expensive and technologically advanced. 😁
 
-![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green) ![Image alt](https://img.shields.io/github/last-commit/mrslv-bss/yorbox)
-
 # How It Work #
 
-Scroll the encoder from 1 to 4 slot that appears in the display.
+* Scroll the encoder from 1 to 4 slot that appears in the display.
 
-Single click - confirm, hold click - reset the timer for choose.
+* Single click - confirm, hold click - reset the timer for choose.
 If time is up, the arduino falls asleep.
-** (In actual version, instead of the encoder, we use the button) **
+
+**(In actual version, instead of the encoder, we use the button)**
+
 Single press - next slot, hold pressd - reset timer for choose.
 If the time is up, your choice confirmed and the algorithm starts.
 
-The conveyor will move to the confirmed slot.
+* The conveyor will move to the confirmed slot.
 
-To end the session, press the encoder (button) once.
+* To end the session, press the encoder (button) once.
 
 The center window will close and the conveyor will return to its initial position.
 
