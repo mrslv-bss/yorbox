@@ -1,39 +1,29 @@
-![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/Circle_Storage.png)
+![Image alt](https://github.com/mrslv-bss/yorbox/raw/master/img/conveyorbox.png)
 # Conveyor Box
 
 >Conveyor Box - The items delivery system based arduino. 3D printed parts, wooden carcass and acrylic windows.
 
->4 boxes of 7x5x1.5cm will allow you to store small details in a completely new way.
-The carousel, which is located in the center of the structure, delivers your chosen slot with a box into a special, mechanical window.
-The slot is selecting by pressing the touch button and displaying the current information on the LCD display.
+There are 5 boxes on board. The conveyor mechanism will deliver the required box to the central mechanics window for you to pick it up.
 
->Very impressive.
-
->The design does not have its own box mounts, so for this a system of two servos in the “hooks” at the end was created.
-When the structure is not using, the servos keep the boxes in place, which makes transporting the structure easy.
-
->Compared to other boxes, Circle Storage looks futuristic, expensive and technologically advanced.
-Like every new product, Circle Storage also has its defects. But let's say directly - which technologies are not accompanied by defects in the early stages?
-
->Simple organizers - this is the last century, it's time to change. Let it be my challenge to mediocrity!
+Compared to other storage methods, the Conveyor looks futuristic, expensive and technologically advanced. 😁
 
 ![Image alt](https://img.shields.io/badge/Sketch%20memory-34%25-green) ![Image alt](https://img.shields.io/github/last-commit/mrslv-bss/yorbox)
 
 # How It Work #
 
-Exit from hibernation is performed by a **single click** on the touch button.
+Scroll the encoder from 1 to 4 slot that appears in the display.
 
-Further, the display will show the text of the currently selected slot and the accompanying timer.
+Single click - confirm, hold click - reset the timer for choose.
+If time is up, the arduino falls asleep.
+** (In actual version, instead of the encoder, we use the button) **
+Single press - next slot, hold pressd - reset timer for choose.
+If the time is up, your choice confirmed and the algorithm starts.
 
-__1/4 slots__ can be selected with a single click on the touch button. Resetting the timer - holding the touch button.
+The conveyor will move to the confirmed slot.
 
-After the timer expires, the two servos will go down, the central window will open and the carousel will be activated.
+To end the session, press the encoder (button) once.
 
-**The carousel scroll to the slot of your choice.**
-
-To end the session with circle storage, perform a single press on the touch button.
-
-The center window will close, the carousel will return to its starting position and the servos will lock the side boxes.
+The center window will close and the conveyor will return to its initial position.
 
 <hr>
 
@@ -48,10 +38,10 @@ A list of components:
 <hr>
 
 ###### Remaster Edition ######
-<img src="https://raw.githubusercontent.com/BassTechnologies/CircleStorage/master/img/118761516_111360574025919_1834713845074961977_o.jpg" width="150%">
+<img src="https://raw.githubusercontent.com/mrslv-bss/yorbox/master/img/118761516_111360574025919_1834713845074961977_o.jpg" width="150%">
 
 ###### Watch a video (download) ######
-[<img src="https://raw.githubusercontent.com/BassTechnologies/CircleStorage/master/img/Screenshot_12.png" width="150%">](https://github.com/BassTechnologies/CircleStorage/blob/master/img/128597729_3788562921188669_8593680395783432028_n.mp4?raw=true)
+[<img src="https://raw.githubusercontent.com/mrslv-bss/yorbox/master/img/preview.png" width="150%">](https://github.com/mrslv-bss/yorbox/blob/master/img/128597729_3788562921188669_8593680395783432028_n.mp4?raw=true)
 
 # INSTALLATION // Getting Started #
 
@@ -61,7 +51,7 @@ Sensor button | Right servo | Left servo | Central servo | Stepper | LCD with i2
 --- | --- | --- | --- | --- | ---
 D2 | D5 | D6 | D4 | 8, 9, 10, 11 | (SDA) A4, (SCL) A5
 
-![Image alt](https://github.com/BassTechnologies/CircleStorage/raw/master/img/Scheme.png)
+![Image alt](https://github.com/mrslv-bss/yorbox/raw/master/img/Scheme.png)
 
 # Libraries #
 
